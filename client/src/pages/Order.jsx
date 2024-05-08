@@ -3,38 +3,36 @@ import { baseUrl } from "../axios/baseUrl.js";
 import { Link, useNavigate } from "react-router-dom";
 
 const Order = () => {
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
 
-    const navigate = useNavigate();
-    const [orders, setOrders] = useState([]);
+  const checkOrderDetails = async (orderId) => {
+    navigate(`/orders/${orderId}`);
+  };
 
-    const checkOrderDetails = async (orderId) => {
-        navigate(`/orders/${orderId}`)
+  const fetchOrders = async () => {
+    const res = await baseUrl.get(`/orders/ordersByUser`);
+    console.log("res.data: ", res.data);
+    setOrders(res.data);
+  };
 
-    }
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
-    const fetchOrders = async () => {
-        const res = await baseUrl.get(`/orders/ordersByUser`);
-        setOrders(res.data);
-    }
-
-    useEffect(() => {
-        fetchOrders();
-    }, []);
-
-
-    return (
-        <main>
-            {
+  return (
+    <main>
+      {/* {
                 orders.length === 0 ?
                     (
-                        <div className="hero bg-base-100 min-h-[70vh]">
-                            <div className="hero-content text-center">
-                                <div className="max-w-lg">
-                                    <h1 className="mb-5 text-5xl">
+                        <div classNameName="hero bg-base-100 min-h-[70vh]">
+                            <div classNameName="hero-content text-center">
+                                <div classNameName="max-w-lg">
+                                    <h1 classNameName="mb-5 text-5xl">
                                         No Orders Yet
                                     </h1>
                                     <Link to={"/products"}>
-                                        <button className="btn btn-lg mt-4 btn-outline">Go Shopping</button>
+                                        <button classNameName="btn btn-lg mt-4 btn-outline">Go Shopping</button>
                                     </Link>
                                 </div>
                             </div>
@@ -42,16 +40,16 @@ const Order = () => {
                     ) : (
                         <>
                             <div>
-                                <h1 className="text-xl pl-16 font-bold mt-10 mb-5">Orders</h1>
+                                <h1 classNameName="text-xl pl-16 font-bold mt-10 mb-5">Orders</h1>
                             </div>
 
-                            <div className="px-12">
-                                <table className="table table-zebra table-lg">
-                                    {/* head */}
+                            <div classNameName="px-12">
+                                <table classNameName="table table-zebra table-lg">
+            
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            {/* <th>Username</th> */}
+                
                                             <th>Total Amount</th>
                                             <th>Status</th>
                                             <th>Timestamp</th>
@@ -80,7 +78,7 @@ const Order = () => {
                                                     </td>
                                                     <td>
                                                         <button onClick={() => checkOrderDetails(order._id)}
-                                                            className="btn btn-outline btn-info btn-sm">Check
+                                                            classNameName="btn btn-outline btn-info btn-sm">Check
                                                             Details
                                                         </button>
                                                     </td>
@@ -95,10 +93,40 @@ const Order = () => {
                             </div>
                         </>
                     )
-            }
+            } */}
 
-        </main>
-    )
-}
+      {orders.map((order) => (
+        <article className="max-w-[85vh] rounded-xl border-2 border-red-300 bg-blue mx-auto p-3 my-3 ">
+          <div className="flex items-center justify-center gap-4 p-4 sm:p-6 lg:p-8">
+            <a href="#" className="block shrink-0">
+              <img
+                alt=""
+                src={order.productId.image}
+                className="h-56 w-56 size-14 rounded-lg object-cover"
+              />
+            </a>
 
+            <div>
+              <h3 className="font-medium sm:text-lg">
+                <a href="#" className="hover:underline">
+                  {" "}
+                  {order.productId.title}
+                </a>
+              </h3>
+
+              <p className="line-clamp-2 text-sm text-white">
+                {order.productId.description}
+              </p>
+
+              <div className="mt-6 flex items-end justify-end sm:flex sm:items-center sm:gap-2 ">
+                <button className="bg-teal-900 text-white rounded-2xl p-4">Download Game</button>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </main>
+  );
+};
 export default Order;

@@ -8,14 +8,14 @@ const OrderDetail = () => {
 
     const [order, setOrder] = useState({});
     const [user, setUser] = useState({});
-
+    const [product, setProduct] = useState({});
     const fetchOrder = async () => {
         const orderResponse = await baseUrl.get(`/orders/${id}`);
-        console.log(orderResponse.data);
         setOrder(orderResponse.data);
-
+        setProduct(orderResponse.data.productId);
         const userResponse = await baseUrl.get(`/users/${orderResponse.data.userId}`);
         setUser(userResponse.data);
+        console.log(userResponse.data);
     }
 
 
@@ -25,7 +25,7 @@ const OrderDetail = () => {
 
     return (
         <>
-            <div className="p-10 max-w-4xl mx-auto bg-white rounded-xl shadow-md flex flex-col space-y-4">
+            {(order && user) && <div className="p-10 max-w-4xl mx-auto bg-white rounded-xl shadow-md flex flex-col space-y-4">
                 <div>
                     <h1 className="text-2xl font-semibold">Order ID | {order._id}</h1>
                     <h2 className="mt-2 text-gray-500 text-lg">Order Amount: ₹{order.totalPrice}</h2>
@@ -33,12 +33,12 @@ const OrderDetail = () => {
                 </div>
                 <Divider />
                 <div className="grid grid-cols-2 justify-items-center">
-                        <Link to={`/product-detail/${order.productId._id}`} key={order.productId._id}>
+                        <Link to={`/product-detail/${product._id}`} key={product._id}>
                             <div className="mt-2 bg-gray-50 border p-4 rounded-md flex items-start space-x-4">
-                                <img src={order.productId.image} alt={order.productId.title} className="h-32 w-32 object-cover" />
+                                <img src={product.image} alt={product.title} className="h-32 w-32 object-cover" />
                                 <div>
-                                    <h2 className="text-xl font-semibold">{order.productId.title}</h2>
-                                    <p className="text-md text-gray-500">Price: ₹{order.productId.price}</p>
+                                    <h2 className="text-xl font-semibold">{product.title}</h2>
+                                    <p className="text-md text-gray-500">Price: ₹{product.price}</p>
                                 </div>
                             </div>
                         </Link>
@@ -47,7 +47,7 @@ const OrderDetail = () => {
                 <div>
                     <h2 className="text-gray-500 text-lg font-semibold">Ordered By: {user.email}</h2>
                 </div>
-            </div>
+            </div>}
         </>
     )
 }

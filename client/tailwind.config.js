@@ -11,7 +11,7 @@ export default {
 
     // daisyUI config
     daisyui: {
-        themes: false,
+        themes: ['dracula'],
         darkTheme: "dark",
         base: true,
         styled: true,

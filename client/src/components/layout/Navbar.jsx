@@ -75,7 +75,7 @@ const Navbar = () => {
                 </div>
             </div> */}
 
-      <header className="bg-white">
+      <header className="bg-dark">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
@@ -100,7 +100,7 @@ const Navbar = () => {
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
                     <Link to={"/"} 
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="#"
                     >
                       Home
@@ -109,7 +109,7 @@ const Navbar = () => {
 
                   <li>
                     <Link to={"/products"} 
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                     >
                       Games
                     </Link>
@@ -117,7 +117,7 @@ const Navbar = () => {
 
                   <li>
                     <Link to={"/"} 
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="#"
                     >
                       Category

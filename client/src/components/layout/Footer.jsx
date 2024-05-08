@@ -1,7 +1,7 @@
 const Footer = () => {
-    return (
-        <>
-            {/* <footer className="footer bg-base-100 items-center p-4 min-h-[10vh] px-8">
+  return (
+    <>
+      {/* <footer className="footer bg-base-100 items-center p-4 min-h-[10vh] px-8">
                 <aside className="items-center grid-flow-col">
                     <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                         fillRule="evenodd" clipRule="evenodd" className="fill-current">
@@ -35,34 +35,40 @@ const Footer = () => {
                 </nav>
             </footer> */}
 
-                {/*
+      {/*
   Heads up! 👋
 
   Plugins:
     - @tailwindcss/forms
 */}
 
-<footer className="bg-white">
-  <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
-
-    <div className="mt-16 border-t border-gray-100 pt-8">
-      <p className="text-center text-xs/relaxed text-gray-500">
-        © Company 2022. All rights reserved.
-
-        <br />
-
-        Created with
-        <a href="#" className="text-gray-700 underline transition hover:text-gray-700/75">Laravel</a>
-        and
-        <a href="#" className="text-gray-700 underline transition hover:text-gray-700/75"
-          >Laravel Livewire</a
-        >.
-      </p>
-    </div>
-  </div>
-</footer>
-        </>
-    )
-}
+      <footer className="bg-dark">
+        <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
+          <div className="mt-16 border-t border-gray-100 pt-8">
+            <p className="text-center text-xs/relaxed text-white">
+              © Company 2022. All rights reserved.
+              <br />
+              Created with
+              <a
+                href="#"
+                className="text-white underline transition hover:text-gray-700/75"
+              >
+                Laravel
+              </a>
+              and
+              <a
+                href="#"
+                className="text-white underline transition hover:text-gray-700/75"
+              >
+                Laravel Livewire
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
 
 export default Footer;
